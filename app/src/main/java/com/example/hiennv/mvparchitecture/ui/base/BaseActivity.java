@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.gabrielsamojlo.keyboarddismisser.KeyboardDismisser;
+
 import butterknife.ButterKnife;
 
 public abstract class BaseActivity extends AppCompatActivity implements BaseView{
@@ -15,6 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         super.onCreate(savedInstanceState);
         setContentView(getLayoutId());
         ButterKnife.bind(this);
+        KeyboardDismisser.useWith(this);
     }
 
 
