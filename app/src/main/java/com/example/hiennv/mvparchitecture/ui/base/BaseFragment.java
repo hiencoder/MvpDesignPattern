@@ -84,4 +84,9 @@ public abstract class BaseFragment extends Fragment implements BaseView{
     public void hideKeyboard() {
 
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+    }
 }
