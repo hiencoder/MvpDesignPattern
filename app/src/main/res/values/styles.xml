@@ -8,4 +8,31 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="TextStyle">
+        <!--<item name="android:layout_margin">2dp</item>-->
+        <item name="android:textColor">@color/black_effective</item>
+    </style>
+
+    <style name="TextStyle.Heading" parent="TextStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAppearance">@style/TextAppearance.Text.Bold</item>
+        <item name="android:layout_marginTop">60dp</item>
+    </style>
+
+    <style name="TextAppearance.Text.Bold" parent="android:TextAppearance">
+        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Bold.ttf</item>
+    </style>
+
+    <style name="TextAppearance.Text.Italic" parent="android:TextAppearance">
+        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Italic.ttf</item>
+    </style>
+
+    <style name="TextAppearance.Text.Light" parent="android:TextAppearance">
+        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Light.ttf</item>
+    </style>
+
+    <style name="TextAppearance.Text.Regular" parent="android:TextAppearance">
+        <item name="fontPath">fonts/source-sans-pro/SourceSansPro-Regular.ttf</item>
+    </style>
+
 </resources>

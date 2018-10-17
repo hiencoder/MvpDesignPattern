@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_cut_white">
+    <target
+        android:animation="@animator/anim_cut_firstblade"
+        android:name="first_blade"></target>
+    <target
+        android:animation="@animator/anim_cut_secondblade"
+        android:name="second_blade"></target>
+</animated-vector>

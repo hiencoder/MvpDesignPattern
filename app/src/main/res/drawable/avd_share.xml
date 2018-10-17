@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_share_white">
+    <target
+        android:animation="@animator/anim_share_topline"
+        android:name="top_line"/>
+    <target
+        android:animation="@animator/anim_share_bottomline"
+        android:name="bottom_line"/>
+</animated-vector>

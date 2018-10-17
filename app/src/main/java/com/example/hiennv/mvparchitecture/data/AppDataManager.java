@@ -15,13 +15,16 @@ import com.example.hiennv.mvparchitecture.data.network.model.LogoutResponse;
 import com.example.hiennv.mvparchitecture.data.network.model.OpenSoureResponse;
 import com.example.hiennv.mvparchitecture.data.pref.PrefHelper;
 import com.example.hiennv.mvparchitecture.di.scope.ApplicationContext;
+import com.example.hiennv.mvparchitecture.utils.Common;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 /*Lam viec voi database: */
 public class AppDataManager implements DataManager {
@@ -87,8 +90,8 @@ public class AppDataManager implements DataManager {
 
     @Override
     public void updateApiHelper(Long userId, String accessToken) {
-        apiHelper.getApiHelper().getProtectApiHeader().setUserId(userId);
-        apiHelper.getApiHelper().getProtectApiHeader().setAccessToken(accessToken);
+        apiHelper.getApiHeader().getProtectApiHeader().setUserId(userId);
+        apiHelper.getApiHeader().getProtectApiHeader().setAccessToken(accessToken);
     }
 
     @Override
@@ -98,111 +101,136 @@ public class AppDataManager implements DataManager {
 
     @Override
     public Observable<Boolean> seedDatabaseQuestions() {
-        return null;
+        return dbHelper.isQuestionEmpty()
+                .concatMap(new Function<Boolean, ObservableSource<? extends Boolean>>() {
+                    @Override
+                    public ObservableSource<? extends Boolean> apply(Boolean isEmpty) throws Exception {
+                        if (isEmpty){
+                            List<Question> list = Common.parseListQuestion(context);
+                            return saveQuestionList(list);
+                        }
+                        return Observable.just(false);
+                    }
+                });
     }
 
     @Override
     public Observable<Boolean> seedDatabaseOptions() {
-        return null;
+        return dbHelper.isOptionEmpty()
+                .concatMap(new Function<Boolean, ObservableSource<? extends Boolean>>() {
+                    @Override
+                    public ObservableSource<? extends Boolean> apply(Boolean isEmpty) throws Exception {
+                        if (isEmpty){
+                            List<Option> list = Common.parseListOption(context);
+                            return saveOptionList(list);
+                        }
+                        return Observable.just(false);
+                    }
+                });
     }
 
     @Override
     public void updateUserInfo(String accessToken, Long userId, LoggedInMode loggedInMode, String userName, String email, String profilePic) {
-
+        setAccessToken(accessToken);
+        setCurrentUserId(userId);
+        setCurrentUserLoggedMode(loggedInMode);
+        setCurrentUserName(userName);
+        setCurrentUserEmail(email);
+        setCurrentUserProfilePicUrl(profilePic);
     }
 
     @Override
-    public ApiHeader getApiHelper() {
-        return null;
+    public ApiHeader getApiHeader() {
+        return apiHelper.getApiHeader();
     }
 
     @Override
     public Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest googleLoginRequest) {
-        return null;
+        return apiHelper.doGoogleLoginApiCall(googleLoginRequest);
     }
 
     @Override
     public Single<LoginResponse> doFacebookLoginApiCall(LoginRequest.FacebookLoginRequest facebookLoginRequest) {
-        return null;
+        return apiHelper.doFacebookLoginApiCall(facebookLoginRequest);
     }
 
     @Override
     public Single<LoginResponse> doServerLoginApiCall(LoginRequest.ServerLoginRequest serverLoginRequest) {
-        return null;
+        return apiHelper.doServerLoginApiCall(serverLoginRequest);
     }
 
     @Override
     public Single<LogoutResponse> doLogouApiCall() {
-        return null;
+        return apiHelper.doLogouApiCall();
     }
 
     @Override
     public Single<BlogResponse> getBlogApiCall() {
-        return null;
+        return apiHelper.getBlogApiCall();
     }
 
     @Override
     public Single<OpenSoureResponse> getOpenSourcApiCall() {
-        return null;
+        return apiHelper.getOpenSourcApiCall();
     }
 
     @Override
     public int getCurrentUserLoggedMode() {
-        return 0;
+        return prefHelper.getCurrentUserLoggedMode();
     }
 
     @Override
     public void setCurrentUserLoggedMode(LoggedInMode loggedMode) {
-
+        prefHelper.setCurrentUserLoggedMode(loggedMode);
     }
 
     @Override
     public Long getCurrentUserId() {
-        return null;
+        return prefHelper.getCurrentUserId();
     }
 
     @Override
     public void setCurrentUserId(Long userId) {
-
+        prefHelper.setCurrentUserId(userId);
     }
 
     @Override
     public String getCurrentUserName() {
-        return null;
+        return prefHelper.getCurrentUserName();
     }
 
     @Override
     public void setCurrentUserName(String userName) {
-
+        prefHelper.setCurrentUserName(userName);
     }
 
     @Override
     public String getCurrentUserEmail() {
-        return null;
+        return prefHelper.getCurrentUserEmail();
     }
 
     @Override
     public void setCurrentUserEmail(String userEmail) {
-
+        prefHelper.setCurrentUserEmail(userEmail);
     }
 
     @Override
     public String getCurrentUserProfilePicUrl() {
-        return null;
+        return prefHelper.getCurrentUserProfilePicUrl();
     }
 
     @Override
     public void setCurrentUserProfilePicUrl(String picUrl) {
-
+        prefHelper.setCurrentUserProfilePicUrl(picUrl);
     }
 
     @Override
     public String getAccessToken() {
-        return null;
+        return prefHelper.getAccessToken();
     }
 
     @Override
     public void setAccessToken(String accessToken) {
-
+        prefHelper.setAccessToken(accessToken);
     }
 }

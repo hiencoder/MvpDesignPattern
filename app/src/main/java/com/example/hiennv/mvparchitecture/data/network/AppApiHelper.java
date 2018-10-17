@@ -19,8 +19,9 @@ public class AppApiHelper implements ApiHelper {
         this.apiHeader = apiHeader;
     }
 
+
     @Override
-    public ApiHeader getApiHelper() {
+    public ApiHeader getApiHeader() {
         return this.apiHeader;
     }
 

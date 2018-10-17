@@ -12,6 +12,7 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
 
     @Inject
     SplashContract.SplashPresenter<SplashContract.SplashView> splashPresenter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_splash;
@@ -20,7 +21,6 @@ public class SplashActivity extends BaseActivity implements SplashContract.Splas
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override

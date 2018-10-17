@@ -9,7 +9,7 @@ import com.example.hiennv.mvparchitecture.data.network.model.OpenSoureResponse;
 import io.reactivex.Single;
 
 public interface ApiHelper {
-    ApiHeader getApiHelper();
+    ApiHeader getApiHeader();
 
     Single<LoginResponse> doGoogleLoginApiCall(LoginRequest.GoogleLoginRequest googleLoginRequest);
 
