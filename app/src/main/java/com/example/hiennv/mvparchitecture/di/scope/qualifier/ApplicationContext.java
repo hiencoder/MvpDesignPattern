@@ -1,4 +1,4 @@
-package com.example.hiennv.mvparchitecture.di.scope;
+package com.example.hiennv.mvparchitecture.di.scope.qualifier;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

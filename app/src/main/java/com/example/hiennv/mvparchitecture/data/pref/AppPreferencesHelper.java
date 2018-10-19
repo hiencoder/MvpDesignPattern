@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.hiennv.mvparchitecture.data.DataManager;
-import com.example.hiennv.mvparchitecture.di.scope.ApplicationContext;
-import com.example.hiennv.mvparchitecture.di.scope.PreferenceInfo;
+import com.example.hiennv.mvparchitecture.di.scope.qualifier.ApplicationContext;
+import com.example.hiennv.mvparchitecture.di.scope.qualifier.PreferenceInfo;
 import com.example.hiennv.mvparchitecture.utils.AppConstants;
 
 import javax.inject.Inject;

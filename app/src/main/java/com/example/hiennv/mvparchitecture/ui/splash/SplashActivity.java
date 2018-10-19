@@ -8,10 +8,10 @@ import com.example.hiennv.mvparchitecture.ui.base.BaseActivity;
 
 import javax.inject.Inject;
 
-public class SplashActivity extends BaseActivity implements SplashContract.SplashView{
+public class SplashActivity extends BaseActivity implements SplashView{
 
     @Inject
-    SplashContract.SplashPresenter<SplashContract.SplashView> splashPresenter;
+    SplashPresenter<SplashView> splashPresenter;
 
     @Override
     protected int getLayoutId() {

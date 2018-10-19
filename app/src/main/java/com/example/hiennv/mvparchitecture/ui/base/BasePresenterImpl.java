@@ -72,23 +72,23 @@ public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V> {
         try {
 
             ApiError apiError = gson.fromJson(error.getErrorBody(), ApiError.class);
-            if (apiError == null || apiError.getMessage() == null){
+            if (apiError == null || apiError.getMessage() == null) {
                 getBaseView().onError("Something wrong happened!");
                 return;
             }
 
-            switch (error.getErrorCode()){
+            switch (error.getErrorCode()) {
                 case HttpsURLConnection.HTTP_UNAUTHORIZED:
                 case HttpURLConnection.HTTP_FORBIDDEN:
                     setUserAsLogout();
                     getBaseView().openActivityOnTokenExpire();
                 case HttpURLConnection.HTTP_INTERNAL_ERROR:
                 case HttpURLConnection.HTTP_NOT_FOUND:
-                    default:
-                        getBaseView().onError("Something wrong happened!");
+                default:
+                    getBaseView().onError("Something wrong happened!");
             }
 
-        }catch (JsonSyntaxException | NullPointerException e){
+        } catch (JsonSyntaxException | NullPointerException e) {
 
         }
 
@@ -113,5 +113,11 @@ public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V> {
 
     public CompositeDisposable getCompositeDisposable() {
         return compositeDisposable;
+    }
+
+    public static class MvpViewNotAttachedExcepstion extends RuntimeException {
+        public MvpViewNotAttachedExcepstion() {
+            super("Please call Presenter.onAttach(MvpView) before requesting data to the Presenter");
+        }
     }
 }

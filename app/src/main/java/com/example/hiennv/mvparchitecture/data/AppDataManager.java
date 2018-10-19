@@ -14,7 +14,7 @@ import com.example.hiennv.mvparchitecture.data.network.model.LoginResponse;
 import com.example.hiennv.mvparchitecture.data.network.model.LogoutResponse;
 import com.example.hiennv.mvparchitecture.data.network.model.OpenSoureResponse;
 import com.example.hiennv.mvparchitecture.data.pref.PrefHelper;
-import com.example.hiennv.mvparchitecture.di.scope.ApplicationContext;
+import com.example.hiennv.mvparchitecture.di.scope.qualifier.ApplicationContext;
 import com.example.hiennv.mvparchitecture.utils.Common;
 
 import java.util.List;
